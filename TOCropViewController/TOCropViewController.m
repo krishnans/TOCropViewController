@@ -86,7 +86,8 @@
         _croppingStyle = style;
         
         _aspectRatioPreset = TOCropViewControllerAspectRatioPresetOriginal;
-        _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
+//        _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
+        _toolbarPosition = TOCropViewControllerToolbarPositionTop;
         _rotateClockwiseButtonHidden = YES;
     }
     
@@ -224,13 +225,14 @@
 - (CGRect)frameForToolBarWithVerticalLayout:(BOOL)verticalLayout
 {
     CGRect frame = CGRectZero;
-    if (!verticalLayout) {
-        frame.origin.x = 0.0f;
-        frame.origin.y = 0.0f;
-        frame.size.width = 44.0f;
-        frame.size.height = CGRectGetHeight(self.view.frame);
-    }
-    else {
+//    if (!verticalLayout) {
+//        frame.origin.x = 0.0f;
+//        frame.origin.y = 0.0f;
+//        frame.size.width = 44.0f;
+//        frame.size.height = CGRectGetHeight(self.view.frame);
+//    }
+//    else
+    {
         frame.origin.x = 0.0f;
         
         if (self.toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
@@ -266,13 +268,14 @@
     }
     
     CGRect frame = CGRectZero;
-    if (!verticalLayout) {
-        frame.origin.x = 44.0f;
-        frame.origin.y = 0.0f;
-        frame.size.width = CGRectGetWidth(bounds) - 44.0f;
-        frame.size.height = CGRectGetHeight(bounds);
-    }
-    else {
+//    if (!verticalLayout) {
+//        frame.origin.x = 44.0f;
+//        frame.origin.y = 0.0f;
+//        frame.size.width = CGRectGetWidth(bounds) - 44.0f;
+//        frame.size.height = CGRectGetHeight(bounds);
+//    }
+//    else
+    {
         frame.origin.x = 0.0f;
         
         if (_toolbarPosition == TOCropViewControllerToolbarPositionBottom) {

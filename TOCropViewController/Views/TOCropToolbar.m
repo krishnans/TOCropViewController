@@ -219,7 +219,7 @@
         [buttonsInOrderHorizontally addObject:self.resetButton];
         
         if (!self.clampButtonHidden) {
-            [buttonsInOrderHorizontally addObject:self.clampButton];
+//            [buttonsInOrderHorizontally addObject:self.clampButton];
         }
         
         if (!self.rotateClockwiseButtonHidden) {
@@ -257,7 +257,7 @@
         [buttonsInOrderVertically addObject:self.resetButton];
         
         if (!self.clampButtonHidden) {
-            [buttonsInOrderVertically addObject:self.clampButton];
+//            [buttonsInOrderVertically addObject:self.clampButton];
         }
         
         if (!self.rotateClockwiseButtonHidden) {

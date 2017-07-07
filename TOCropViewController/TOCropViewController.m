@@ -204,22 +204,24 @@
 
 - (BOOL)prefersStatusBarHidden
 {
+    
+    return YES;
     //If we belong to a UINavigationController, defer to its own status bar style
-    if (self.navigationController) {
-        return self.navigationController.prefersStatusBarHidden;
-    }
+//    if (self.navigationController) {
+//        return self.navigationController.prefersStatusBarHidden;
+//    }
+//    
+//    //If our presenting controller has already hidden the status bar,
+//    //hide the status bar by default
+//    if (self.presentingViewController.prefersStatusBarHidden) {
+//        return YES;
+//    }
+//    
+//    BOOL hidden = YES;
+//    hidden = hidden && !(self.inTransition);          // Not currently in a presentation animation (Where removing the status bar would break the layout)
+//    hidden = hidden && !(self.view.superview == nil); // Not currently waiting to the added to a super view
     
-    //If our presenting controller has already hidden the status bar,
-    //hide the status bar by default
-    if (self.presentingViewController.prefersStatusBarHidden) {
-        return YES;
-    }
-    
-    BOOL hidden = YES;
-    hidden = hidden && !(self.inTransition);          // Not currently in a presentation animation (Where removing the status bar would break the layout)
-    hidden = hidden && !(self.view.superview == nil); // Not currently waiting to the added to a super view
-    
-    return hidden;
+//    return hidden;
 }
 
 - (CGRect)frameForToolBarWithVerticalLayout:(BOOL)verticalLayout

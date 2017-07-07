@@ -90,6 +90,7 @@
 }
 
 #pragma mark - Cropper Delegate -
+
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
 {
     self.croppedFrame = cropRect;

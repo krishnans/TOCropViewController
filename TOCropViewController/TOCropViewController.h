@@ -50,6 +50,28 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
 ///------------------------------------------------
 
 @protocol TOCropViewControllerDelegate <NSObject>
+
+
+/**
+ Called when the user has committed the crop action, and provides
+ both the original image with crop co-ordinates.
+ 
+ @param image The newly cropped image.
+ @param cropRect A rectangle indicating the crop region of the image the user chose (In the original image's local co-ordinate space)
+ @param angle The angle of the image when it was cropped
+ */
+- (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle NS_SWIFT_NAME(cropViewController(_:didCropToImage:rect:angle:));
+
+
+/**
+ If implemented, when the user hits cancel, or completes a
+ UIActivityViewController operation, this delegate will be called,
+ giving you a chance to manually dismiss the view controller
+ 
+ */
+- (void)cropViewController:(nonnull TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled NS_SWIFT_NAME(cropViewController(_:didFinishCancelled:));
+
+
 @optional
 
 /**
@@ -62,16 +84,6 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
 - (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropImageToRect:(CGRect)cropRect angle:(NSInteger)angle NS_SWIFT_NAME(cropViewController(_:didCropToRect:angle:));
 
 /**
- Called when the user has committed the crop action, and provides 
- both the original image with crop co-ordinates.
- 
- @param image The newly cropped image.
- @param cropRect A rectangle indicating the crop region of the image the user chose (In the original image's local co-ordinate space)
- @param angle The angle of the image when it was cropped
- */
-- (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle NS_SWIFT_NAME(cropViewController(_:didCropToImage:rect:angle:));
-
-/**
  If the cropping style is set to circular, implementing this delegate will return a circle-cropped version of the selected
  image, as well as it's cropping co-ordinates
  
@@ -81,13 +93,6 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
  */
 - (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToCircularImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle NS_SWIFT_NAME(cropViewController(_:didCropToCircleImage:rect:angle:));
 
-/**
- If implemented, when the user hits cancel, or completes a 
- UIActivityViewController operation, this delegate will be called,
- giving you a chance to manually dismiss the view controller
- 
- */
-- (void)cropViewController:(nonnull TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled NS_SWIFT_NAME(cropViewController(_:didFinishCancelled:));
 
 @end
 

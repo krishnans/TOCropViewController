@@ -92,7 +92,8 @@
                                                                  resourceBundle,
                                                                  nil)
                      forState:UIControlStateNormal];
-    [_doneTextButton setTitleColor:[UIColor colorWithRed:1.0f green:0.8f blue:0.0f alpha:1.0f] forState:UIControlStateNormal];
+//    [_doneTextButton setTitleColor:[UIColor colorWithRed:1.0f green:0.8f blue:0.0f alpha:1.0f] forState:UIControlStateNormal];
+    [_doneTextButton setTitleColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
     [_doneTextButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [_doneTextButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_doneTextButton];
@@ -103,12 +104,16 @@
     [_doneIconButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_doneIconButton];
     
-    _cancelTextButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_cancelTextButton setTitle:NSLocalizedStringFromTableInBundle(@"Cancel",
-                                                                   @"TOCropViewControllerLocalizable",
-                                                                   resourceBundle,
-                                                                   nil)
-                       forState:UIControlStateNormal];
+    
+    _cancelTextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_cancelTextButton setTintColor: [UIColor whiteColor]];
+    
+    [_cancelTextButton setImage: [UIImage imageNamed:@"ios-arrow-left"] forState: UIControlStateNormal];
+//    [_cancelTextButton setTitle:NSLocalizedStringFromTableInBundle(@"Cancel",
+//                                                                   @"TOCropViewControllerLocalizable",
+//                                                                   resourceBundle,
+//                                                                   nil)
+//                       forState:UIControlStateNormal];
     [_cancelTextButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [_cancelTextButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_cancelTextButton];
@@ -257,7 +262,7 @@
         [buttonsInOrderVertically addObject:self.resetButton];
         
         if (!self.clampButtonHidden) {
-//            [buttonsInOrderVertically addObject:self.clampButton];
+            [buttonsInOrderVertically addObject:self.clampButton];
         }
         
         if (!self.rotateClockwiseButtonHidden) {

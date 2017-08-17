@@ -39,7 +39,11 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     TOCropViewController *cropController = [[TOCropViewController alloc] initWithCroppingStyle:self.croppingStyle image:image];
+    cropController.aspectRatioPreset = TOCropViewControllerAspectRatioPreset4x3;
+    cropController.aspectRatioPickerButtonHidden = false;
+    cropController.aspectRatioLockEnabled = true;
     cropController.delegate = self;
+    
 //    cropController.aspectRatioPickerButtonHidden = true;
     
     // -- Uncomment these if you want to test out restoring to a previous crop setting --

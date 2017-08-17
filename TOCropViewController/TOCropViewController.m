@@ -158,6 +158,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
     self.inTransition = NO;
     self.cropView.simpleRenderMode = NO;
     if (animated && [UIApplication sharedApplication].statusBarHidden == NO) {

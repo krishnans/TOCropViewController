@@ -106,15 +106,15 @@
     
     
     _cancelTextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_cancelTextButton setTintColor: [UIColor whiteColor]];
-    
     [_cancelTextButton setImage: [UIImage imageNamed:@"ios-arrow-left"] forState: UIControlStateNormal];
+    [_cancelTextButton setTintColor: [UIColor whiteColor]];
+
 //    [_cancelTextButton setTitle:NSLocalizedStringFromTableInBundle(@"Cancel",
 //                                                                   @"TOCropViewControllerLocalizable",
 //                                                                   resourceBundle,
 //                                                                   nil)
 //                       forState:UIControlStateNormal];
-    [_cancelTextButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+//    [_cancelTextButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [_cancelTextButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_cancelTextButton];
     
@@ -218,7 +218,7 @@
         
         NSMutableArray *buttonsInOrderHorizontally = [NSMutableArray new];
         if (!self.rotateCounterclockwiseButtonHidden) {
-            [buttonsInOrderHorizontally addObject:self.rotateCounterclockwiseButton];
+//            [buttonsInOrderHorizontally addObject:self.rotateCounterclockwiseButton];
         }
         
         [buttonsInOrderHorizontally addObject:self.resetButton];
@@ -228,7 +228,7 @@
         }
         
         if (!self.rotateClockwiseButtonHidden) {
-            [buttonsInOrderHorizontally addObject:self.rotateClockwiseButton];
+//            [buttonsInOrderHorizontally addObject:self.rotateClockwiseButton];
         }
         
         

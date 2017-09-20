@@ -74,7 +74,7 @@
 - (instancetype)initWithCroppingStyle:(TOCropViewCroppingStyle)style image:(UIImage *)image
 {
     NSParameterAssert(image);
-
+    
     self = [super init];
     if (self) {
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -86,7 +86,7 @@
         _croppingStyle = style;
         
         _aspectRatioPreset = TOCropViewControllerAspectRatioPresetOriginal;
-//        _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
+        //        _toolbarPosition = TOCropViewControllerToolbarPositionBottom;
         _toolbarPosition = TOCropViewControllerToolbarPositionTop;
         _rotateClockwiseButtonHidden = YES;
     }
@@ -102,9 +102,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     BOOL circularMode = (self.croppingStyle == TOCropViewCroppingStyleCircular);
-
+    
     self.cropView.frame = [self frameForCropViewWithVerticalLayout:CGRectGetWidth(self.view.bounds) < CGRectGetHeight(self.view.bounds)];
     [self.view addSubview:self.cropView];
     
@@ -149,7 +149,7 @@
     else {
         [self.cropView setBackgroundImageViewHidden:YES animated:NO];
     }
-
+    
     if (self.aspectRatioPreset != TOCropViewControllerAspectRatioPresetOriginal) {
         [self setAspectRatioPreset:self.aspectRatioPreset animated:NO];
     }
@@ -158,7 +158,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
+    
     self.inTransition = NO;
     self.cropView.simpleRenderMode = NO;
     if (animated && [UIApplication sharedApplication].statusBarHidden == NO) {
@@ -208,33 +208,33 @@
     
     return YES;
     //If we belong to a UINavigationController, defer to its own status bar style
-//    if (self.navigationController) {
-//        return self.navigationController.prefersStatusBarHidden;
-//    }
-//    
-//    //If our presenting controller has already hidden the status bar,
-//    //hide the status bar by default
-//    if (self.presentingViewController.prefersStatusBarHidden) {
-//        return YES;
-//    }
-//    
-//    BOOL hidden = YES;
-//    hidden = hidden && !(self.inTransition);          // Not currently in a presentation animation (Where removing the status bar would break the layout)
-//    hidden = hidden && !(self.view.superview == nil); // Not currently waiting to the added to a super view
+    //    if (self.navigationController) {
+    //        return self.navigationController.prefersStatusBarHidden;
+    //    }
+    //
+    //    //If our presenting controller has already hidden the status bar,
+    //    //hide the status bar by default
+    //    if (self.presentingViewController.prefersStatusBarHidden) {
+    //        return YES;
+    //    }
+    //
+    //    BOOL hidden = YES;
+    //    hidden = hidden && !(self.inTransition);          // Not currently in a presentation animation (Where removing the status bar would break the layout)
+    //    hidden = hidden && !(self.view.superview == nil); // Not currently waiting to the added to a super view
     
-//    return hidden;
+    //    return hidden;
 }
 
 - (CGRect)frameForToolBarWithVerticalLayout:(BOOL)verticalLayout
 {
     CGRect frame = CGRectZero;
-//    if (!verticalLayout) {
-//        frame.origin.x = 0.0f;
-//        frame.origin.y = 0.0f;
-//        frame.size.width = 44.0f;
-//        frame.size.height = CGRectGetHeight(self.view.frame);
-//    }
-//    else
+    //    if (!verticalLayout) {
+    //        frame.origin.x = 0.0f;
+    //        frame.origin.y = 0.0f;
+    //        frame.size.width = 44.0f;
+    //        frame.size.height = CGRectGetHeight(self.view.frame);
+    //    }
+    //    else
     {
         frame.origin.x = 0.0f;
         
@@ -267,17 +267,18 @@
         bounds = self.view.bounds;
     }
     else {
-        bounds = self.parentViewController.view.bounds;
+        //        bounds = self.parentViewController.view.bounds;
+        bounds = self.view.bounds;
     }
     
     CGRect frame = CGRectZero;
-//    if (!verticalLayout) {
-//        frame.origin.x = 44.0f;
-//        frame.origin.y = 0.0f;
-//        frame.size.width = CGRectGetWidth(bounds) - 44.0f;
-//        frame.size.height = CGRectGetHeight(bounds);
-//    }
-//    else
+    //    if (!verticalLayout) {
+    //        frame.origin.x = 44.0f;
+    //        frame.origin.y = 0.0f;
+    //        frame.size.width = CGRectGetWidth(bounds) - 44.0f;
+    //        frame.size.height = CGRectGetHeight(bounds);
+    //    }
+    //    else
     {
         frame.origin.x = 0.0f;
         
@@ -286,7 +287,7 @@
         } else {
             frame.origin.y = 44.0f;
         }
-
+        
         frame.size.width = CGRectGetWidth(bounds);
         frame.size.height = CGRectGetHeight(bounds) - 44.0f;
     }
@@ -458,7 +459,7 @@
         [self presentViewController:alertController animated:YES completion:nil];
     }
     else {
-    //TODO: Completely overhaul this once iOS 7 support is dropped
+        //TODO: Completely overhaul this once iOS 7 support is dropped
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         
@@ -632,7 +633,7 @@
     self.transitionController.toView    = toView;
     self.transitionController.toFrame   = frame;
     self.prepareForTransitionHandler    = setup;
-
+    
     [viewController dismissViewControllerAnimated:YES completion:^ {
         if (completion) {
             completion();
@@ -657,7 +658,7 @@
         if (!CGRectIsEmpty(transitioning.fromFrame) || transitioning.fromView) {
             strongSelf.cropView.croppingViewsHidden = YES;
         }
-
+        
         if (strongSelf.prepareForTransitionHandler)
             strongSelf.prepareForTransitionHandler();
         
@@ -702,20 +703,20 @@
 {
     CGRect cropFrame = self.cropView.imageCropFrame;
     NSInteger angle = self.cropView.angle;
-
-        UIImage *image = nil;
-        if (angle == 0 && CGRectEqualToRect(cropFrame, (CGRect){CGPointZero, self.image.size})) {
-            image = self.image;
-        }
-        else {
-            image = [self.image croppedImageWithFrame:cropFrame angle:angle circularClip:NO];
-        }
-        
-        //Dispatch on the next run-loop so the animation isn't interuppted by the crop operation
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.03f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.delegate cropViewController:self didCropToImage:image withRect:cropFrame angle:angle];
-        });
-
+    
+    UIImage *image = nil;
+    if (angle == 0 && CGRectEqualToRect(cropFrame, (CGRect){CGPointZero, self.image.size})) {
+        image = self.image;
+    }
+    else {
+        image = [self.image croppedImageWithFrame:cropFrame angle:angle circularClip:NO];
+    }
+    
+    //Dispatch on the next run-loop so the animation isn't interuppted by the crop operation
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.03f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.delegate cropViewController:self didCropToImage:image withRect:cropFrame angle:angle];
+    });
+    
 }
 
 #pragma mark - Property Methods -
